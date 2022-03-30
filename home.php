@@ -33,7 +33,7 @@ session_start();
     </div>
 
     <div class="d-flex flex-column align-items-center">
-        <p style="font-size:22px;padding-top:30px;padding-top:30vh">Halo <strong><?= isset($_SESSION['nama_depan']) && isset($_SESSION['nama_tengah']) && isset($_SESSION['nama_belakang'])   ? ($_SESSION['nama_depan']." ".$_SESSION['nama_tengah']." ".$_SESSION['nama_belakang']) : "" ?></strong>, selamat datang di aplikasi pengelolaan keuangan!</p>
+        <p style="font-size:22px;padding-top:30px;padding-top:30vh">Halo <strong><?= isset($_SESSION['fullname']) ? $_SESSION['fullname'] : '' ?></strong>, selamat datang di aplikasi pengelolaan keuangan!</p>
     </div>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

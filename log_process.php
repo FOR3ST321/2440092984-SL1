@@ -1,23 +1,22 @@
 <?php
-    session_start();
+session_start();
+include('./config/conn.php');
 
-    print_r($_POST);
+if (isset($_POST['submit'])) {
+    $username = $_POST['username'];
+    $password = md5($_POST['password']);
 
-    if(isset($_POST['submit'])){
-        if(isset($_SESSION['username']) && isset($_SESSION['password'])){
-            if($_POST['username'] == $_SESSION['username'] && $_POST['password'] == $_SESSION['password']){
-                header("Location: home.php");
-            }
-            else{
-                $_SESSION['msg'] = 'Username/Password salah';
-                header("Location: login.php");
-            }
-            
-        }
-        else{
-            $_SESSION['msg'] = 'Username/Password salah';
-            header("Location: login.php");
-        }
+    $str_query = "SELECT * FROM user WHERE username='" . $username . "' AND password='" . $password . "'";
+    $query = mysqli_query($connection, $str_query);
+    $data = mysqli_fetch_array($query);
 
-        
+    if($data){
+        $_SESSION['nik'] = $data['nik'];
+        $_SESSION['fullname'] = $data['nama_depan'] . " " . $data['nama_tengah'] . " " . $data['nama_belakang'];
+        header("Location: home.php");
     }
+    else{
+        $_SESSION['msg'] = 'Username/Password salah';
+        header("Location: login.php");
+    }
+}

@@ -45,6 +45,7 @@ function match(field1, field2) {
 }
 
 function email(field) {
+    console.log(field);
     if (!(field.value.includes("@") || field.value.split("@").length == 2)) {
         flag = true;
         return `Format email tidak cocok!`;
@@ -64,35 +65,28 @@ function email(field) {
 }
 
 $("#formBtn").on("click", function (e) {
-    console.log("hai");
+    // console.log("hai");
     e.preventDefault();
     flag = false;
     const form = $(this).parents("form");
     var formData = new FormData(form[0]);
     let data = form.serializeArray();
 
-    $(`#err1`).html(`${empty(data[0]) || range(data[0], 3, 20)}`);
-    $(`#err2`).html(`${empty(data[1]) || range(data[1], 3, 20)}`);
-    $(`#err3`).html(`${empty(data[2]) || range(data[2], 3, 20)}`);
-    $(`#err4`).html(`${empty(data[3]) || range(data[3], 10, 100)}`);
-    $(`#err5`).html(`${empty(data[4]) || range(data[4], 5, 20)}`);
-    $(`#err6`).html(`${empty(data[5]) || range(data[5], 3, 20)}`);
-    $(`#err7`).html(`${empty(data[6])}`);
+    console.log(data);
+
+    $(`#err1`).html(`${empty(data[0]) || range(data[0], 3, 20)}`); //depan
+    $(`#err2`).html(`${empty(data[1]) || range(data[1], 3, 20)}`); //tempat
+    $(`#err3`).html(`${empty(data[2]) || range(data[2], 3, 20)}`); //warga
+    $(`#err4`).html(`${empty(data[3]) || range(data[3], 10, 100)}`); //alamat
+    $(`#err6`).html(`${empty(data[4]) || range(data[4], 3, 20)}`); //tengah
+    $(`#err7`).html(`${empty(data[5])}`); //ttl
     $(`#err8`).html(
-        `${empty(data[7]) || range(data[7], 5, 50) || email(data[7])}`
+        `${empty(data[6]) || range(data[6], 5, 50) || email(data[6])}`
     ); //email
-    $(`#err9`).html(`${empty(data[8]) || samelength(data[8], 5)}`); //pos
-    $(`#err10`).html(`${empty(data[9]) || range(data[9], 3, 50)}`); //pass1
-    $(`#err11`).html(`${empty(data[10]) || range(data[10], 3, 20)}`);
-    $(`#err12`).html(`${empty(data[11]) || samelength(data[11], 16)}`); //nik
-    $(`#err13`).html(`${empty(data[12]) || range(data[12], 11, 14)}`); //hp
-    $(`#err14`).html(
-        `${
-            empty(data[13]) ||
-            range(data[13], 3, 50) ||
-            match(data[9], data[13])
-        }`
-    ); //pass2
+    $(`#err9`).html(`${empty(data[7]) || samelength(data[7], 5)}`); //pos
+    $(`#err11`).html(`${empty(data[8]) || range(data[8], 3, 20)}`); //belakang
+    $(`#err12`).html(`${empty(data[9]) || samelength(data[9], 16)}`); //nik
+    $(`#err13`).html(`${empty(data[10]) || range(data[10], 11, 14)}`); //hp
 
 
     if (!flag) {
@@ -103,7 +97,8 @@ $("#formBtn").on("click", function (e) {
             processData: false,
             contentType: false,
             success: function (response) {
-                window.location.href = './login.php';
+                let responses = JSON.parse(response)
+                window.location.href = responses.location;
             }
         });
     }

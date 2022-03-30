@@ -42,29 +42,46 @@
         <h3 style="margin: 30px 0px 30px 0px;" class="text-center">Profil Pribadi</h3>
 
         <div class="row">
+            <div class="col-2">
+                <a href="./edit_profile.php" class="btn btn-primary" style="margin-bottom: 20px;">Edit Profil</a>
+            </div>
+        </div>
+        <div class="">
+            <strong>
+                <?= isset($_SESSION['msg'])? $_SESSION['msg']:''; $_SESSION['msg'] = '';?>
+            </strong>
+        </div>
+        <?php   
+        include './config/conn.php';
+        $str_query = "SELECT * FROM user WHERE nik = '" . $_SESSION['nik'] . "'";
+        $query = mysqli_query($connection, $str_query);
+        $data = mysqli_fetch_array($query);
+        ?>
+
+        <div class="row">
             <div class="col-4">
                 <div class="row" style="margin-bottom:20px">
                     <div class="col-4">Nama depan</div>
                     <div class="col-8">
-                        <strong><?= isset($_SESSION['nama_depan']) ? $_SESSION['nama_depan'] : "" ?></strong>
+                        <strong><?= $data['nama_depan'] ?></strong>
                     </div>
                 </div>
                 <div class="row" style="margin-bottom:20px">
                     <div class="col-4">tempat lahir</div>
                     <div class="col-8">
-                        <strong><?= isset($_SESSION['tempat_lahir']) ? $_SESSION['tempat_lahir'] : "" ?></strong>
+                        <strong><?= $data['tempat_lahir'] ?></strong>
                     </div>
                 </div>
                 <div class="row" style="margin-bottom:20px">
                     <div class="col-4">warga negara</div>
                     <div class="col-8">
-                        <strong><?= isset($_SESSION['warga_negara']) ? $_SESSION['warga_negara'] : "" ?></strong>
+                        <strong><?= $data['warga_negara'] ?></strong>
                     </div>
                 </div>
                 <div class="row" style="margin-bottom:20px">
                     <div class="col-4">alamat</div>
                     <div class="col-8">
-                        <strong><?= isset($_SESSION['alamat']) ? $_SESSION['alamat'] : "" ?></strong>
+                        <strong><?= $data['alamat'] ?></strong>
                     </div>
                 </div>
             </div>
@@ -72,25 +89,25 @@
                 <div class="row" style="margin-bottom:20px">
                     <div class="col-4">Nama tengah</div>
                     <div class="col-8">
-                        <strong><?= isset($_SESSION['nama_tengah']) ? $_SESSION['nama_tengah'] : "" ?></strong>
+                        <strong><?= $data['nama_tengah'] ?></strong>
                     </div>
                 </div>
                 <div class="row" style="margin-bottom:20px">
                     <div class="col-4">Tanggal Lahir</div>
                     <div class="col-8">
-                        <strong><?= isset($_SESSION['tanggal_lahir']) ? $_SESSION['tanggal_lahir'] : "" ?></strong>
+                        <strong><?= $data['tanggal_lahir'] ?></strong>
                     </div>
                 </div>
                 <div class="row" style="margin-bottom:20px">
                     <div class="col-4">Email</div>
                     <div class="col-8">
-                        <strong><?= isset($_SESSION['email']) ? $_SESSION['email'] : "" ?></strong>
+                        <strong><?= $data['email'] ?></strong>
                     </div>
                 </div>
                 <div class="row" style="margin-bottom:20px">
                     <div class="col-4">Kode pos</div>
                     <div class="col-8">
-                        <strong><?= isset($_SESSION['kode_pos']) ? $_SESSION['kode_pos'] : "" ?></strong>
+                        <strong><?= $data['kode_pos'] ?></strong>
                     </div>
                 </div>
             </div>
@@ -98,25 +115,25 @@
                 <div class="row" style="margin-bottom:20px">
                     <div class="col-4">Nama belakang</div>
                     <div class="col-8">
-                        <strong><?= isset($_SESSION['nama_belakang']) ? $_SESSION['nama_belakang'] : "" ?></strong>
+                        <strong><?= $data['nama_belakang'] ?></strong>
                     </div>
                 </div>
                 <div class="row" style="margin-bottom:20px">
                     <div class="col-4">NIK</div>
                     <div class="col-8">
-                    <strong><?= isset($_SESSION['nik']) ? $_SESSION['nik'] : "" ?></strong>
+                    <strong><?= $data['nik'] ?></strong>
                     </div>
                 </div>
                 <div class="row" style="margin-bottom:20px">
                     <div class="col-4">no hp</div>
                     <div class="col-8">
-                    <strong><?= isset($_SESSION['no_hp']) ? $_SESSION['no_hp'] : "" ?></strong>
+                    <strong><?= $data['no_hp'] ?></strong>
                     </div>
                 </div>
                 <div class="row" style="margin-bottom:20px">
                     <div class="col-4">Foto Profil</div>
                     <div class="col-8">
-                        <img src="./assets/profilepic/<?= isset($_SESSION['profil'])? $_SESSION['profil'] :"" ?>" alt="No pic" style="max-width: 100px;">
+                        <img src="./assets/profilepic/<?= $data['profile_pic'] ?>" alt="No pic" style="max-width: 100px;">
                     </div>
                 </div>
             </div>
