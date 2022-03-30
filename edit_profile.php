@@ -49,7 +49,7 @@
     </div>
 
     <div class="d-flex flex-column " style="padding: 0px 20px 0px 20px;">
-        <h3 style="margin: 30px 0px 30px 0px;" class="text-center">Edit Profie</h3>
+        <h3 style="margin: 30px 0px 30px 0px;" class="text-center">Edit Profile</h3>
 
         <form action="edit_profile_process.php" enctype="multipart/form-data" method="POST" id="regForm">
             <div class="row">
