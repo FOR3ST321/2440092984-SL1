@@ -30,12 +30,16 @@
 </head>
 
 <body>
-
     <?php
-        include './config/conn.php';
-        $str_query = "SELECT * FROM user WHERE nik = '" . $_SESSION['nik'] . "'";
-        $query = mysqli_query($connection, $str_query);
-        $data = mysqli_fetch_array($query);
+    if (!isset($_SESSION['nik'])) {
+        header("Location: ./login.php");
+    }
+    ?>
+    <?php
+    include './config/conn.php';
+    $str_query = "SELECT * FROM user WHERE nik = '" . $_SESSION['nik'] . "'";
+    $query = mysqli_query($connection, $str_query);
+    $data = mysqli_fetch_array($query);
     ?>
     <div class="row" style="padding:15px;background-color:#f9ffca;">
         <div class="col-8">Aplikasi Pengelolaan Keuangan</div>
@@ -54,8 +58,8 @@
 
             <div class="col-12 text-center">
                 <form action="./edit_photo_process.php" method="POST" enctype="multipart/form-data">
-                    <input type="file" name="profil" id="profile_pic" style="width: 20%;" required/>
-                    <input type="submit" value="Ganti Photo!" class="btn btn-primary"/>
+                    <input type="file" name="profil" id="profile_pic" style="width: 20%;" required />
+                    <input type="submit" value="Ganti Photo!" class="btn btn-primary" />
                 </form>
 
                 <a href="./edit_profile.php" class="btn btn-secondary" style="margin-top: 20px;width:28%">Kembali</a>

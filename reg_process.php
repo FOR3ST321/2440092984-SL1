@@ -25,9 +25,16 @@ $no_hp = $_POST['no_hp'];
 $profil = $namaFile;
 
 $str_query = "INSERT INTO user VALUE('".$nik."','".$email."','".$username."','".$password."','".$nama_depan."','".$nama_tengah."','".$nama_belakang."','".$tanggal_lahir."','".$tempat_lahir."','".$warga_negara."','".$alamat."','".$kode_pos."','".$no_hp."','".$profil."')";
-$query = mysqli_query($connection, $str_query);
-$_SESSION["msg"] = "Register Berhasil!";
 
-echo json_encode(array("location"=> "./login.php"));
+try{
+    $query = mysqli_query($connection, $str_query);
+    $_SESSION["msg"] = "Register Berhasil";
+    echo json_encode(array("location"=> "./login.php"));
+} catch(Exception $e){
+    $_SESSION["msg"] = "Register Gagal";
+    echo json_encode(array("error"=> mysqli_error($connection)));
+}
+
+
 
 

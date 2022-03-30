@@ -21,10 +21,15 @@ session_start();
             width: 150px;
         }
     </style>
-    <title>Login</title>
+    <title>Home</title>
 </head>
 
 <body>
+    <?php
+    if(!isset($_SESSION['nik'])){
+        header("Location: ./login.php");
+    }
+    ?>
     <div class="row" style="padding:15px;background-color:#f9ffca;">
         <div class="col-8">Aplikasi Pengelolaan Keuangan</div>
         <div class="col-1"><u><a href="./home.php" style="color:black">Home</a></u></div>

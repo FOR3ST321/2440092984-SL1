@@ -52,7 +52,7 @@ session_start();
                         Username
                     </div>
                     <div class="col-9">
-                        <input type="text" style="width: 100%;" class="form-control" name="username" id="username">
+                        <input type="text" style="width: 100%;" class="form-control" name="username" id="username" required>
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@ session_start();
                         Password
                     </div>
                     <div class="col-9">
-                        <input type="password" style="width: 100%;" class="form-control" name="password" id="password">
+                        <input type="password" style="width: 100%;" class="form-control" name="password" id="password" required2>
                     </div>
                 </div>
 

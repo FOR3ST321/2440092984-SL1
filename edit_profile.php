@@ -30,12 +30,16 @@
 </head>
 
 <body>
-
     <?php
-        include './config/conn.php';
-        $str_query = "SELECT * FROM user WHERE nik = '" . $_SESSION['nik'] . "'";
-        $query = mysqli_query($connection, $str_query);
-        $data = mysqli_fetch_array($query);
+    if (!isset($_SESSION['nik'])) {
+        header("Location: ./login.php");
+    }
+    ?>
+    <?php
+    include './config/conn.php';
+    $str_query = "SELECT * FROM user WHERE nik = '" . $_SESSION['nik'] . "'";
+    $query = mysqli_query($connection, $str_query);
+    $data = mysqli_fetch_array($query);
     ?>
     <div class="row" style="padding:15px;background-color:#f9ffca;">
         <div class="col-8">Aplikasi Pengelolaan Keuangan</div>
@@ -52,61 +56,61 @@
                 <div class="col-4">
                     <div class="row" style="margin-bottom:20px">
                         <div class="col-4">Nama depan (*)</div>
-                        <div class="col-8"><input type="text" name="nama_depan" id="nama_depan" value="<?= $data['nama_depan']?>"></div>
+                        <div class="col-8"><input type="text" name="nama_depan" id="nama_depan" value="<?= $data['nama_depan'] ?>"></div>
                         <div class="col-12 text-danger" id="err1"></div>
                     </div>
                     <div class="row" style="margin-bottom:20px">
                         <div class="col-4">tempat lahir (*)</div>
-                        <div class="col-8"><input type="text" name="tempat_lahir" id="tempat_lahir" value="<?= $data['tempat_lahir']?>"></div>
+                        <div class="col-8"><input type="text" name="tempat_lahir" id="tempat_lahir" value="<?= $data['tempat_lahir'] ?>"></div>
                         <div class="col-12 text-danger" id="err2"></div>
                     </div>
                     <div class="row" style="margin-bottom:20px">
                         <div class="col-4">warga negara (*)</div>
-                        <div class="col-8"><input type="text" name="warga_negara" id="warga_negara" value="<?= $data['warga_negara']?>"></div>
+                        <div class="col-8"><input type="text" name="warga_negara" id="warga_negara" value="<?= $data['warga_negara'] ?>"></div>
                         <div class="col-12 text-danger" id="err3"></div>
                     </div>
                     <div class="row" style="margin-bottom:20px">
                         <div class="col-4">alamat (*)</div>
-                        <div class="col-8"><textarea name="alamat" id="alamat" cols="23" rows="3"><?= $data['alamat']?></textarea></div>
+                        <div class="col-8"><textarea name="alamat" id="alamat" cols="23" rows="3"><?= $data['alamat'] ?></textarea></div>
                         <div class="col-12 text-danger" id="err4"></div>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="row" style="margin-bottom:20px">
                         <div class="col-4">Nama tengah (*)</div>
-                        <div class="col-8"><input type="text" name="nama_tengah" id="nama_tengah" value="<?= $data['nama_tengah']?>"></div>
+                        <div class="col-8"><input type="text" name="nama_tengah" id="nama_tengah" value="<?= $data['nama_tengah'] ?>"></div>
                         <div class="col-12 text-danger" id="err6"></div>
                     </div>
                     <div class="row" style="margin-bottom:20px">
                         <div class="col-4">Tanggal Lahir (*)</div>
-                        <div class="col-8"><input type="date" name="tanggal_lahir" id="tanggal_lahir" value="<?= $data['tanggal_lahir']?>"></div>
+                        <div class="col-8"><input type="date" name="tanggal_lahir" id="tanggal_lahir" value="<?= $data['tanggal_lahir'] ?>"></div>
                         <div class="col-12 text-danger" id="err7"></div>
                     </div>
                     <div class="row" style="margin-bottom:20px">
                         <div class="col-4">Email (*)</div>
-                        <div class="col-8"><input type="email" name="email" id="email" value="<?= $data['email']?>"></div>
+                        <div class="col-8"><input type="email" name="email" id="email" value="<?= $data['email'] ?>"></div>
                         <div class="col-12 text-danger" id="err8"></div>
                     </div>
                     <div class="row" style="margin-bottom:20px">
                         <div class="col-4">Kode pos (*)</div>
-                        <div class="col-8"><input type="number" name="kode_pos" id="kode_pos" value="<?= $data['kode_pos']?>"></div>
+                        <div class="col-8"><input type="number" name="kode_pos" id="kode_pos" value="<?= $data['kode_pos'] ?>"></div>
                         <div class="col-12 text-danger" id="err9"></div>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="row" style="margin-bottom:20px">
                         <div class="col-4">Nama belakang (*)</div>
-                        <div class="col-8"><input type="text" name="nama_belakang" id="nama_belakang" value="<?= $data['nama_belakang']?>"></div>
+                        <div class="col-8"><input type="text" name="nama_belakang" id="nama_belakang" value="<?= $data['nama_belakang'] ?>"></div>
                         <div class="col-12 text-danger" id="err11"></div>
                     </div>
                     <div class="row" style="margin-bottom:20px">
                         <div class="col-4">NIK (*)</div>
-                        <div class="col-8"><input type="number" name="nik" id="nik" value="<?= $data['nik']?>" readonly></div>
+                        <div class="col-8"><input type="number" name="nik" id="nik" value="<?= $data['nik'] ?>" readonly></div>
                         <div class="col-12 text-danger" id="err12"></div>
                     </div>
                     <div class="row" style="margin-bottom:20px">
                         <div class="col-4">no hp (*)</div>
-                        <div class="col-8"><input type="text" name="no_hp" id="no_hp" value="<?= $data['no_hp']?>"></div>
+                        <div class="col-8"><input type="text" name="no_hp" id="no_hp" value="<?= $data['no_hp'] ?>"></div>
                         <div class="col-12 text-danger" id="err13"></div>
                     </div>
                     <div class="row" style="margin-bottom:20px">

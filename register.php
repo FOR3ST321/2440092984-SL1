@@ -29,6 +29,11 @@
     <div class="d-flex flex-column " style="padding: 0px 20px 0px 20px;">
         <h3 style="margin: 30px 0px 30px 0px;" class="text-center">Register</h3>
 
+        <p class="text-danger">
+            <strong id="error_register">
+            </strong>
+        </p>
+
         <form action="reg_process.php" enctype="multipart/form-data" method="POST" id="regForm">
             <div class="row">
                 <div class="col-4">
@@ -103,7 +108,7 @@
                     </div>
                     <div class="row" style="margin-bottom:20px">
                         <div class="col-4">Foto Profil (*)</div>
-                        <div class="col-8"><input type="file" name="profil" id="profil" required accept="image/png, image/jpeg"></div>
+                        <div class="col-8"><input type="file" name="profil" id="profil" accept="image/png, image/jpeg" required></div>
                     </div>
                     <div class="row" style="margin-bottom:20px">
                         <div class="col-4">Password 2 (*)</div>

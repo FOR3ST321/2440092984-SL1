@@ -103,7 +103,14 @@ $("#formBtn").on("click", function (e) {
             processData: false,
             contentType: false,
             success: function (response) {
-                window.location.href = './login.php';
+                let responses = JSON.parse(response);
+                if(responses.error){
+                    $("#error_register").html("REGISTER ERROR: " + responses.error);
+                    console.log(responses.error);
+                }
+                else{
+                    window.location.href = './login.php';
+                }
             }
         });
     }
